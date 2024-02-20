@@ -20,23 +20,41 @@ public class CMEvents implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         String playerJoinMessage = this.plugin.getConfig().getString("saved_messages.join." + player.getUniqueId(), "");
-        if (!playerJoinMessage.isEmpty()) {
-            String message = Colors.translateHexColorCodes("&#", "", playerJoinMessage);
-            message = ChatColor.translateAlternateColorCodes('&', message);
-            event.setJoinMessage(message);
+
+        if (playerJoinMessage.isEmpty()) {
+            String defaultMessage = this.plugin.getConfig().getString("custom_join_message", "");
+
+            if (!defaultMessage.isEmpty()) {
+                playerJoinMessage = defaultMessage;
+            }
         }
 
+        String message = Colors.translateHexColorCodes("&#", "", playerJoinMessage);
+        message = ChatColor.translateAlternateColorCodes('&', message);
+
+        if (!message.isEmpty()) {
+            event.setJoinMessage(message);
+        }
     }
 
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         String playerLeaveMessage = this.plugin.getConfig().getString("saved_messages.leave." + player.getUniqueId(), "");
-        if (!playerLeaveMessage.isEmpty()){
-            String message = Colors.translateHexColorCodes("&#", "", playerLeaveMessage);
-            message = ChatColor.translateAlternateColorCodes('&', message);
-            event.setQuitMessage(message);
+
+        if (playerLeaveMessage.isEmpty()) {
+            String defaultMessage = this.plugin.getConfig().getString("custom_leave_message", "");
+
+            if (!defaultMessage.isEmpty()) {
+                playerLeaveMessage = defaultMessage;
+            }
         }
 
+        String message = Colors.translateHexColorCodes("&#", "", playerLeaveMessage);
+        message = ChatColor.translateAlternateColorCodes('&', message);
+
+        if (!message.isEmpty()) {
+            event.setQuitMessage(message);
+        }
     }
 }

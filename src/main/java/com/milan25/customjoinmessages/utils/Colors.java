@@ -7,7 +7,7 @@ public class Colors {
     public static String translateHexColorCodes(String startTag, String endTag, String message) {
         Pattern hexPattern = Pattern.compile(startTag + "([A-Fa-f0-9]{6})" + endTag);
         Matcher matcher = hexPattern.matcher(message);
-        StringBuffer buffer = new StringBuffer(message.length() + 32);
+        StringBuilder buffer = new StringBuilder(message.length() + 32);
 
         while(matcher.find()) {
             String group = matcher.group(1);
