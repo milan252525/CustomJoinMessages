@@ -20,7 +20,7 @@ public class CMEvents implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         String playerJoinMessage = this.plugin.getConfig().getString("saved_messages.join." + player.getUniqueId(), "");
-        if (playerJoinMessage != "") {
+        if (!playerJoinMessage.isEmpty()) {
             String message = Colors.translateHexColorCodes("&#", "", playerJoinMessage);
             message = ChatColor.translateAlternateColorCodes('&', message);
             event.setJoinMessage(message);
@@ -32,7 +32,7 @@ public class CMEvents implements Listener {
     public void onPlayerLeave(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         String playerLeaveMessage = this.plugin.getConfig().getString("saved_messages.leave." + player.getUniqueId(), "");
-        if (playerLeaveMessage != "") {
+        if (!playerLeaveMessage.isEmpty()){
             String message = Colors.translateHexColorCodes("&#", "", playerLeaveMessage);
             message = ChatColor.translateAlternateColorCodes('&', message);
             event.setQuitMessage(message);
