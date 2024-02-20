@@ -4,7 +4,3 @@ main: com.milan25.customjoinmessages.CustomJoinMessages
 api-version: '1.20'
 authors: [ milan_25 ]
 description: Custom join and leave messages
-commands:
-  cm:
-    description: Set custom join and leave messages per player
-    usage: Use /cm to see all commands.

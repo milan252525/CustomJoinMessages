@@ -25,7 +25,7 @@ public class CMEvents implements Listener {
             String defaultMessage = this.plugin.getConfig().getString("custom_join_message", "");
 
             if (!defaultMessage.isEmpty()) {
-                playerJoinMessage = defaultMessage;
+                playerJoinMessage = defaultMessage.replace("{NAME}", player.getName());
             }
         }
 
@@ -46,7 +46,7 @@ public class CMEvents implements Listener {
             String defaultMessage = this.plugin.getConfig().getString("custom_leave_message", "");
 
             if (!defaultMessage.isEmpty()) {
-                playerLeaveMessage = defaultMessage;
+                playerLeaveMessage = defaultMessage.replace("{NAME}", player.getName());
             }
         }
 

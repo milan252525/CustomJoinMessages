@@ -19,8 +19,10 @@ public final class CustomJoinMessages extends JavaPlugin {
         CommandAPI.onEnable();
 
         this.getLogger().info("CustomMessages plugin loaded");
-        this.getConfig().options().copyDefaults();
+
+        this.getConfig().options().copyDefaults(true);
         this.saveDefaultConfig();
+
         this.getServer().getPluginManager().registerEvents(new CMEvents(this), this);
     }
 
