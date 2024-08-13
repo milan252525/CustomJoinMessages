@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import me.clip.placeholderapi.PlaceholderAPI;
 
 public class CMEvents implements Listener {
     private final CustomJoinMessages plugin;
@@ -32,8 +33,10 @@ public class CMEvents implements Listener {
         String message = Colors.translateHexColorCodes("&#", "", playerJoinMessage);
         message = ChatColor.translateAlternateColorCodes('&', message);
 
-        if (!message.isEmpty()) {
-            event.setJoinMessage(message);
+        String withPlaceholdersFilled = PlaceholderAPI.setPlaceholders(player, message);
+
+        if (!withPlaceholdersFilled.isEmpty()) {
+            event.setJoinMessage(withPlaceholdersFilled);
         }
     }
 
@@ -53,8 +56,10 @@ public class CMEvents implements Listener {
         String message = Colors.translateHexColorCodes("&#", "", playerLeaveMessage);
         message = ChatColor.translateAlternateColorCodes('&', message);
 
-        if (!message.isEmpty()) {
-            event.setQuitMessage(message);
+        String withPlaceholdersFilled = PlaceholderAPI.setPlaceholders(player, message);
+
+        if (!withPlaceholdersFilled.isEmpty()) {
+            event.setQuitMessage(withPlaceholdersFilled);
         }
     }
 }

@@ -23,7 +23,12 @@ public final class CustomJoinMessages extends JavaPlugin {
         this.getConfig().options().copyDefaults(true);
         this.saveDefaultConfig();
 
-        this.getServer().getPluginManager().registerEvents(new CMEvents(this), this);
+        if (this.getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            this.getServer().getPluginManager().registerEvents(new CMEvents(this), this);
+        } else {
+            this.getLogger().warning("Could not find PlaceholderAPI! This plugin is required.");
+            this.getServer().getPluginManager().disablePlugin(this);
+        }
     }
 
     @Override
