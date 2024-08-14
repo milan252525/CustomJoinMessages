@@ -75,15 +75,12 @@ public class CMCommand {
 
     @Subcommand("set")
     @Description("Set join or leave message of another player.")
-    @Permission("custommessages.set")
+    @Permission("custommessages.admin")
     public static void cmSet(Player player, @AOfflinePlayerArgument OfflinePlayer targetPlayer, @AMultiLiteralArgument({"join", "leave"}) String messageType, @AGreedyStringArgument String message) {
         setPlayersMessage(player, targetPlayer, messageType, message);
     }
 
-    @Subcommand("reset")
-    @Description("Reset another player's messages to default.")
-    @Permission("custommessages.admin")
-    public static void cmReset(Player player, @AOfflinePlayerArgument OfflinePlayer target) {
+    private static void cmResetMessage(Player player, OfflinePlayer target) {
         UUID playerId = target.getUniqueId();
         var plugin = CustomJoinMessages.getPlugin(CustomJoinMessages.class);
         plugin.getConfig().set("saved_messages.join." + playerId, "");
@@ -93,16 +90,20 @@ public class CMCommand {
     }
 
     @Subcommand("reset")
-    @Description("Reset your messages to default ones.")
-    @Permission("custommessages.set")
-    public static void cmReset(Player player) {
-        cmReset(player, player);
+    @Description("Reset another player's messages to default.")
+    @Permission("custommessages.admin")
+    public static void cmReset(Player player, @AOfflinePlayerArgument OfflinePlayer target) {
+        cmResetMessage(player, target);
     }
 
-    @Subcommand("show")
-    @Description("View custom messages of other players.")
-    @Permission("custommessages.admin")
-    public static void cmShow(Player player, @AOfflinePlayerArgument OfflinePlayer target) {
+    @Subcommand("reset")
+    @Description("Reset your messages to default ones.")
+    @Permission("custommessages.set")
+    public static void cmResetSelf(Player player) {
+        cmResetMessage(player, player);
+    }
+
+    private static void cmShowMessage(Player player, OfflinePlayer target) {
         if (target == null) {
             player.sendMessage("Player not found");
             return;
@@ -130,10 +131,17 @@ public class CMCommand {
     }
 
     @Subcommand("show")
+    @Description("View custom messages of other players.")
+    @Permission("custommessages.admin")
+    public static void cmShow(Player player, @AOfflinePlayerArgument OfflinePlayer target) {
+        cmShowMessage(player, target);
+    }
+
+    @Subcommand("show")
     @Description("View your custom messages.")
     @Permission("custommessages.set")
-    public static void cmShow(Player player) {
-        cmShow(player, player);
+    public static void cmShowSelf(Player player) {
+        cmShowMessage(player, player);
     }
 
     @Subcommand("reload")

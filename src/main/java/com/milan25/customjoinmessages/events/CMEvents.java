@@ -30,6 +30,9 @@ public class CMEvents implements Listener {
             }
         }
 
+        String joinPrefix = this.plugin.getConfig().getString("custom_join_message_prefix", "");
+        playerJoinMessage = joinPrefix + playerJoinMessage;
+
         String message = Colors.translateHexColorCodes("&#", "", playerJoinMessage);
         message = ChatColor.translateAlternateColorCodes('&', message);
 
@@ -52,6 +55,9 @@ public class CMEvents implements Listener {
                 playerLeaveMessage = defaultMessage.replace("{NAME}", player.getName());
             }
         }
+
+        String leavePrefix = this.plugin.getConfig().getString("custom_leave_message_prefix", "");
+        playerLeaveMessage = leavePrefix + playerLeaveMessage;
 
         String message = Colors.translateHexColorCodes("&#", "", playerLeaveMessage);
         message = ChatColor.translateAlternateColorCodes('&', message);
