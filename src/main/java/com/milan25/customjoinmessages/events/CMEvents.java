@@ -33,13 +33,13 @@ public class CMEvents implements Listener {
         String joinPrefix = this.plugin.getConfig().getString("custom_join_message_prefix", "");
         playerJoinMessage = joinPrefix + playerJoinMessage;
 
-        String message = Colors.translateHexColorCodes("&#", "", playerJoinMessage);
-        message = ChatColor.translateAlternateColorCodes('&', message);
+        String withPlaceholdersFilled = PlaceholderAPI.setPlaceholders(player, playerJoinMessage);
 
-        String withPlaceholdersFilled = PlaceholderAPI.setPlaceholders(player, message);
+        String replacedColors = Colors.translateHexColorCodes("&#", "", withPlaceholdersFilled);
+        replacedColors = ChatColor.translateAlternateColorCodes('&', replacedColors);
 
         if (!withPlaceholdersFilled.isEmpty()) {
-            event.setJoinMessage(withPlaceholdersFilled);
+            event.setJoinMessage(replacedColors);
         }
     }
 
@@ -59,13 +59,13 @@ public class CMEvents implements Listener {
         String leavePrefix = this.plugin.getConfig().getString("custom_leave_message_prefix", "");
         playerLeaveMessage = leavePrefix + playerLeaveMessage;
 
-        String message = Colors.translateHexColorCodes("&#", "", playerLeaveMessage);
-        message = ChatColor.translateAlternateColorCodes('&', message);
+        String withPlaceholdersFilled = PlaceholderAPI.setPlaceholders(player, playerLeaveMessage);
 
-        String withPlaceholdersFilled = PlaceholderAPI.setPlaceholders(player, message);
+        String replacedColors = Colors.translateHexColorCodes("&#", "", playerLeaveMessage);
+        replacedColors = ChatColor.translateAlternateColorCodes('&', replacedColors);
 
         if (!withPlaceholdersFilled.isEmpty()) {
-            event.setQuitMessage(withPlaceholdersFilled);
+            event.setQuitMessage(replacedColors);
         }
     }
 }
