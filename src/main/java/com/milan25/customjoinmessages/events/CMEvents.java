@@ -61,7 +61,7 @@ public class CMEvents implements Listener {
 
         String withPlaceholdersFilled = PlaceholderAPI.setPlaceholders(player, playerLeaveMessage);
 
-        String replacedColors = Colors.translateHexColorCodes("&#", "", playerLeaveMessage);
+        String replacedColors = Colors.translateHexColorCodes("&#", "", withPlaceholdersFilled);
         replacedColors = ChatColor.translateAlternateColorCodes('&', replacedColors);
 
         if (!withPlaceholdersFilled.isEmpty()) {
