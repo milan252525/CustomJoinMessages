@@ -6,15 +6,26 @@
 
     <groupId>com.milan25</groupId>
     <artifactId>CustomJoinMessages</artifactId>
-    <version>1.1.5</version>
+    <version>1.1.6</version>
     <packaging>jar</packaging>
 
     <name>CustomJoinMessages</name>
 
     <description>Custom join and leave messages</description>
+
     <properties>
+        <!-- General -->
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Dependency versions -->
+        <spigot.api.version>1.21.4-R0.1-SNAPSHOT</spigot.api.version>
+        <commandapi.version>10.0.1</commandapi.version>
+        <placeholderapi.version>2.11.6</placeholderapi.version>
+
+        <!-- Plugin versions -->
+        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
+        <maven.shade.plugin.version>3.5.0</maven.shade.plugin.version>
     </properties>
 
     <build>
@@ -22,7 +33,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven.compiler.plugin.version}</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -30,7 +41,7 @@
                         <path>
                             <groupId>dev.jorel</groupId>
                             <artifactId>commandapi-annotations</artifactId>
-                            <version>9.6.1</version>
+                            <version>${commandapi.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
@@ -38,7 +49,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>${maven.shade.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>shade</id>
@@ -86,24 +97,24 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.21.4-R0.1-SNAPSHOT</version>
+            <version>${spigot.api.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>dev.jorel</groupId>
             <artifactId>commandapi-bukkit-shade</artifactId>
-            <version>9.7.0</version>
+            <version>${commandapi.version}</version>
         </dependency>
         <dependency>
             <groupId>dev.jorel</groupId>
             <artifactId>commandapi-annotations</artifactId>
-            <version>9.7.0</version>
+            <version>${commandapi.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
-            <version>2.11.6</version>
+            <version>${placeholderapi.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
