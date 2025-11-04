@@ -4,7 +4,7 @@
   <groupId>com.milan25</groupId>
   <artifactId>CustomJoinMessages</artifactId>
   <name>CustomJoinMessages</name>
-  <version>1.1.7</version>
+  <version>1.1.8</version>
   <description>Custom join and leave messages</description>
   <build>
     <resources>
@@ -71,7 +71,7 @@
     <dependency>
       <groupId>org.spigotmc</groupId>
       <artifactId>spigot-api</artifactId>
-      <version>1.21.8-R0.1-SNAPSHOT</version>
+      <version>1.21.10-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -91,7 +91,7 @@
     <commandapi.version>10.1.2</commandapi.version>
     <placeholderapi.version>2.11.6</placeholderapi.version>
     <java.version>17</java.version>
-    <spigot.api.version>1.21.8-R0.1-SNAPSHOT</spigot.api.version>
+    <spigot.api.version>1.21.10-R0.1-SNAPSHOT</spigot.api.version>
     <maven.shade.plugin.version>3.5.0</maven.shade.plugin.version>
     <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

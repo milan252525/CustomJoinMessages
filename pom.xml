@@ -6,7 +6,7 @@
 
     <groupId>com.milan25</groupId>
     <artifactId>CustomJoinMessages</artifactId>
-    <version>1.1.7</version>
+    <version>1.1.8</version>
     <packaging>jar</packaging>
 
     <name>CustomJoinMessages</name>
@@ -19,7 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Dependency versions -->
-        <spigot.api.version>1.21.8-R0.1-SNAPSHOT</spigot.api.version>
+        <spigot.api.version>1.21.10-R0.1-SNAPSHOT</spigot.api.version>
         <commandapi.version>10.1.2</commandapi.version>
         <placeholderapi.version>2.11.6</placeholderapi.version>
 
