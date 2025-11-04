@@ -3,14 +3,14 @@ package com.milan25.customjoinmessages;
 import com.milan25.customjoinmessages.commands.CMCommand;
 import com.milan25.customjoinmessages.events.CMEvents;
 import dev.jorel.commandapi.CommandAPI;
-import dev.jorel.commandapi.CommandAPIBukkitConfig;
+import dev.jorel.commandapi.CommandAPIPaperConfig;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class CustomJoinMessages extends JavaPlugin {
 
     @Override
     public void onLoad() {
-        CommandAPI.onLoad(new CommandAPIBukkitConfig(this));
+        CommandAPI.onLoad(new CommandAPIPaperConfig(this));
         CommandAPI.registerCommand(CMCommand.class);
     }
 
@@ -19,6 +19,7 @@ public final class CustomJoinMessages extends JavaPlugin {
         CommandAPI.onEnable();
 
         this.getLogger().info("CustomMessages plugin loaded");
+
 
         this.getConfig().options().copyDefaults(true);
         this.saveDefaultConfig();

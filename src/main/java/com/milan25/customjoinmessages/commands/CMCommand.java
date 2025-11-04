@@ -8,10 +8,9 @@ import dev.jorel.commandapi.annotations.Permission;
 import dev.jorel.commandapi.annotations.Subcommand;
 import dev.jorel.commandapi.annotations.arguments.AGreedyStringArgument;
 import dev.jorel.commandapi.annotations.arguments.AMultiLiteralArgument;
-import dev.jorel.commandapi.annotations.arguments.AOfflinePlayerArgument;
+import dev.jorel.commandapi.annotations.arguments.AEntitySelectorArgument;
 import jdk.jfr.Description;
 import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
@@ -29,10 +28,10 @@ public class CMCommand {
         }
 
         if (player.hasPermission("custommessages.admin")) {
-            sb.append(ChatColor.translateAlternateColorCodes('&', "&A/cm set [player] join/leave [message] &F- Set join or leave message of another player.\n"));
-            sb.append(ChatColor.translateAlternateColorCodes('&', "&A/cm show [player] &F- View custom messages of other players.\n"));
-            sb.append(ChatColor.translateAlternateColorCodes('&', "&A/cm reset [player] &F- Reset player's messages to default.\n"));
-            sb.append(ChatColor.translateAlternateColorCodes('&', "&A/cm reload &F- Reload configuration.\n"));
+            sb.append(ChatColor.translateAlternateColorCodes('&', "&A/cm adminset [player] join/leave [message] &F- Set join or leave message of another player.\n"));
+            sb.append(ChatColor.translateAlternateColorCodes('&', "&A/cm adminshow [player] &F- View custom messages of other players.\n"));
+            sb.append(ChatColor.translateAlternateColorCodes('&', "&A/cm adminreset [player] &F- Reset player's messages to default.\n"));
+            sb.append(ChatColor.translateAlternateColorCodes('&', "&A/cm adminreload &F- Reload configuration.\n"));
         }
 
         sb.append(ChatColor.translateAlternateColorCodes('&', "&A_________________________________\n"));
@@ -47,7 +46,7 @@ public class CMCommand {
         return str;
     }
 
-    private static void setPlayersMessage(Player source, OfflinePlayer target, String messageType, String message) {
+    private static void setPlayersMessage(Player source, Player target, String messageType, String message) {
         UUID playerId = target.getUniqueId();
         var plugin = CustomJoinMessages.getPlugin(CustomJoinMessages.class);
 
@@ -73,14 +72,14 @@ public class CMCommand {
         setPlayersMessage(player, player, messageType, message);
     }
 
-    @Subcommand("set")
+    @Subcommand("adminset")
     @Description("Set join or leave message of another player.")
     @Permission("custommessages.admin")
-    public static void cmSet(Player player, @AOfflinePlayerArgument OfflinePlayer targetPlayer, @AMultiLiteralArgument({"join", "leave"}) String messageType, @AGreedyStringArgument String message) {
+    public static void cmAdminSet(Player player, @AEntitySelectorArgument.OnePlayer Player targetPlayer, @AMultiLiteralArgument({"join", "leave"}) String messageType, @AGreedyStringArgument String message) {
         setPlayersMessage(player, targetPlayer, messageType, message);
     }
 
-    private static void cmResetMessage(Player player, OfflinePlayer target) {
+    private static void cmResetMessage(Player player, Player target) {
         UUID playerId = target.getUniqueId();
         var plugin = CustomJoinMessages.getPlugin(CustomJoinMessages.class);
         plugin.getConfig().set("saved_messages.join." + playerId, "");
@@ -89,10 +88,10 @@ public class CMCommand {
         player.sendMessage("Messages of " + target.getName() + " were reset to default.");
     }
 
-    @Subcommand("reset")
+    @Subcommand("adminreset")
     @Description("Reset another player's messages to default.")
     @Permission("custommessages.admin")
-    public static void cmReset(Player player, @AOfflinePlayerArgument OfflinePlayer target) {
+    public static void cmAdminReset(Player player, @AEntitySelectorArgument.OnePlayer Player target) {
         cmResetMessage(player, target);
     }
 
@@ -103,7 +102,7 @@ public class CMCommand {
         cmResetMessage(player, player);
     }
 
-    private static void cmShowMessage(Player player, OfflinePlayer target) {
+    private static void cmShowMessage(Player player, Player target) {
         if (target == null) {
             player.sendMessage("Player not found");
             return;
@@ -130,10 +129,10 @@ public class CMCommand {
         player.sendMessage("[Leave] " + leaveMessage + "\n[Leave preview] " + leavePreview);
     }
 
-    @Subcommand("show")
+    @Subcommand("adminshow")
     @Description("View custom messages of other players.")
     @Permission("custommessages.admin")
-    public static void cmShow(Player player, @AOfflinePlayerArgument OfflinePlayer target) {
+    public static void cmAdminShow(Player player, @AEntitySelectorArgument.OnePlayer Player target) {
         cmShowMessage(player, target);
     }
 
@@ -144,10 +143,10 @@ public class CMCommand {
         cmShowMessage(player, player);
     }
 
-    @Subcommand("reload")
+    @Subcommand("adminreload")
     @Description("Reload configuration.")
     @Permission("custommessages.admin")
-    public static void cmReload(Player player) {
+    public static void cmAdminReload(Player player) {
         CustomJoinMessages.getPlugin(CustomJoinMessages.class).reloadConfig();
         player.sendMessage("Config reloaded!");
     }

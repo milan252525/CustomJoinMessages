@@ -5,3 +5,4 @@ api-version: '1.21'
 authors: [ milan_25 ]
 description: Custom join and leave messages
 depend: [PlaceholderAPI]
+website: https://www.spigotmc.org/resources/custom-player-join-leave-messages.74263/

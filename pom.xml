@@ -6,7 +6,7 @@
 
     <groupId>com.milan25</groupId>
     <artifactId>CustomJoinMessages</artifactId>
-    <version>1.1.8</version>
+    <version>1.2.0</version>
     <packaging>jar</packaging>
 
     <name>CustomJoinMessages</name>
@@ -15,17 +15,18 @@
 
     <properties>
         <!-- General -->
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Dependency versions -->
-        <spigot.api.version>1.21.10-R0.1-SNAPSHOT</spigot.api.version>
-        <commandapi.version>10.1.2</commandapi.version>
+        <paper.api.version>1.21.10-R0.1-SNAPSHOT</paper.api.version>
+        <commandapi.version>11.0.0</commandapi.version>
         <placeholderapi.version>2.11.6</placeholderapi.version>
 
         <!-- Plugin versions -->
-        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
-        <maven.shade.plugin.version>3.5.0</maven.shade.plugin.version>
+        <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
+        <maven.shade.plugin.version>3.5.3</maven.shade.plugin.version>
+        <maven.jar.plugin.version>3.4.1</maven.jar.plugin.version>
     </properties>
 
     <build>
@@ -40,7 +41,7 @@
                     <annotationProcessorPaths>
                         <path>
                             <groupId>dev.jorel</groupId>
-                            <artifactId>commandapi-annotations</artifactId>
+                            <artifactId>commandapi-paper-annotations</artifactId>
                             <version>${commandapi.version}</version>
                         </path>
                     </annotationProcessorPaths>
@@ -69,6 +70,18 @@
                     </relocations>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven.jar.plugin.version}</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <paperweight-mappings-namespace>mojang</paperweight-mappings-namespace>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
         </plugins>
         <resources>
             <resource>
@@ -80,8 +93,8 @@
 
     <repositories>
         <repository>
-            <id>spigotmc-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+            <id>papermc-repo</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
         <repository>
             <id>sonatype</id>
@@ -95,19 +108,19 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>${spigot.api.version}</version>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>${paper.api.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>dev.jorel</groupId>
-            <artifactId>commandapi-bukkit-shade</artifactId>
+            <artifactId>commandapi-paper-shade</artifactId>
             <version>${commandapi.version}</version>
         </dependency>
         <dependency>
             <groupId>dev.jorel</groupId>
-            <artifactId>commandapi-annotations</artifactId>
+            <artifactId>commandapi-paper-annotations</artifactId>
             <version>${commandapi.version}</version>
             <scope>provided</scope>
         </dependency>
