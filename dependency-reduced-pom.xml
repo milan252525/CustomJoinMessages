@@ -4,7 +4,7 @@
   <groupId>com.milan25</groupId>
   <artifactId>CustomJoinMessages</artifactId>
   <name>CustomJoinMessages</name>
-  <version>1.2.0</version>
+  <version>1.2.1</version>
   <description>Custom join and leave messages</description>
   <build>
     <resources>
@@ -82,30 +82,30 @@
     <dependency>
       <groupId>io.papermc.paper</groupId>
       <artifactId>paper-api</artifactId>
-      <version>1.21.10-R0.1-SNAPSHOT</version>
+      <version>1.21.11-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>dev.jorel</groupId>
       <artifactId>commandapi-paper-annotations</artifactId>
-      <version>11.0.0</version>
+      <version>11.1.0</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>me.clip</groupId>
       <artifactId>placeholderapi</artifactId>
-      <version>2.11.6</version>
+      <version>2.11.7</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
   <properties>
-    <commandapi.version>11.0.0</commandapi.version>
-    <placeholderapi.version>2.11.6</placeholderapi.version>
+    <commandapi.version>11.1.0</commandapi.version>
+    <placeholderapi.version>2.11.7</placeholderapi.version>
     <java.version>21</java.version>
     <maven.jar.plugin.version>3.4.1</maven.jar.plugin.version>
     <maven.shade.plugin.version>3.5.3</maven.shade.plugin.version>
     <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <paper.api.version>1.21.10-R0.1-SNAPSHOT</paper.api.version>
+    <paper.api.version>1.21.11-R0.1-SNAPSHOT</paper.api.version>
   </properties>
 </project>

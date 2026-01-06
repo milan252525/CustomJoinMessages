@@ -6,7 +6,7 @@
 
     <groupId>com.milan25</groupId>
     <artifactId>CustomJoinMessages</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
     <packaging>jar</packaging>
 
     <name>CustomJoinMessages</name>
@@ -19,9 +19,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Dependency versions -->
-        <paper.api.version>1.21.10-R0.1-SNAPSHOT</paper.api.version>
-        <commandapi.version>11.0.0</commandapi.version>
-        <placeholderapi.version>2.11.6</placeholderapi.version>
+        <paper.api.version>1.21.11-R0.1-SNAPSHOT</paper.api.version>
+        <commandapi.version>11.1.0</commandapi.version>
+        <placeholderapi.version>2.11.7</placeholderapi.version>
 
         <!-- Plugin versions -->
         <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
